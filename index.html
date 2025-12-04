@@ -1,9 +1,26 @@
 <!DOCTYPE html>
 <html>
-  <head>
-     <title>VRC Morgana</title>
-      <link rel="icon" type="image/png" href="favicon.png">
-</head>
+<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MORGANA Cast Portal</title>
+    <style>
+        /* 余白を完全にゼロにする */
+        body, html { 
+            margin: 0; 
+            padding: 0; 
+            width: 100%; 
+            height: 100%; 
+            overflow: hidden; /* 外側のスクロールバーを消す */
+            background-color: #0f0518; /* 背景色を一応合わせておく */
+        }
+        /* iframeを画面いっぱいに広げる */
+        iframe { 
+            width: 100%; 
+            height: 100%; 
+            border: none; 
+            display: block; 
+        }
+    </style>
 
   <body style="margin:0">
     <iframe 
