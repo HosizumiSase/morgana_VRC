@@ -26,30 +26,31 @@
 <body style="margin:0">
     <iframe id="morgana-frame" src="" style="width:100vw; height:100vh; border:none;"></iframe>
 
-    <script>
-      (function() {
-        // GASウェブアプリのURL
-        var GAS_URL = "https://script.google.com/macros/s/AKfycbyqGgq98343gYH8qcG8rrkCBYkxPgPZozocAUEK7fxyN4tmHXWRwd0aeGPVtXJ9_xeg/exec";
+<script>
+  (function() {
+    var GAS_URL = "https://script.google.com/macros/s/xxxxxxxxxxxxxxxxx/exec"; // ★あなたのGAS URL
 
-        // 1. パラメータを取得
-        var params = new URLSearchParams(window.location.search);
-        var castId = params.get('id');
-        var castName = params.get('name'); // ★追加: 名前も取得
+    var params = new URLSearchParams(window.location.search);
+    var castId = params.get('id');
+    var castName = params.get('name');
+    var diaryId = params.get('diary'); // ★追加: 日記IDも取得
 
-        // 2. iframe要素を取得
-        var iframe = document.getElementById("morgana-frame");
+    var iframe = document.getElementById("morgana-frame");
 
-        // 3. GASへのパスを作成
-        // IDがあればID優先、なければ名前を確認
-        if (castId) {
-          iframe.src = GAS_URL + "?id=" + castId;
-        } else if (castName) {
-          // 日本語が含まれるのでエンコードして渡す
-          iframe.src = GAS_URL + "?name=" + encodeURIComponent(castName);
-        } else {
-          iframe.src = GAS_URL;
-        }
-      })();
-    </script>
+    // URL組み立て
+    var newSrc = GAS_URL;
+    var query = [];
+
+    if (castId) query.push("id=" + castId);
+    if (castName) query.push("name=" + encodeURIComponent(castName));
+    if (diaryId) query.push("diary=" + diaryId); // ★追加
+
+    if (query.length > 0) {
+      newSrc += "?" + query.join("&");
+    }
+
+    iframe.src = newSrc;
+  })();
+</script>
 </body>
 </html>
