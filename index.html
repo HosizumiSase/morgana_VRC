@@ -1,34 +1,54 @@
 <!DOCTYPE html>
 <html>
+<head>
 <meta charset="UTF-8">
-    <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VRC Morgana</title>
-    <link rel="icon" type="image/png" href="favicon.png">
-    </head>
-    <style>
-        /* 余白を完全にゼロにする */
-        body, html { 
-            margin: 0; 
-            padding: 0; 
-            width: 100%; 
-            height: 100%; 
-            overflow: hidden; /* 外側のスクロールバーを消す */
-            background-color: #0f0518; /* 背景色を一応合わせておく */
-        }
-        /* iframeを画面いっぱいに広げる */
-        iframe { 
-            width: 100%; 
-            height: 100%; 
-            border: none; 
-            display: block; 
-        }
-    </style>
-
-  <body style="margin:0">
-    <iframe 
-      src="https://script.google.com/macros/s/AKfycbyqGgq98343gYH8qcG8rrkCBYkxPgPZozocAUEK7fxyN4tmHXWRwd0aeGPVtXJ9_xeg/exec"
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VRC Morgana</title>
+<link rel="icon" type="image/png" href="favicon.png">
+<style>
+    /* 余白を完全にゼロにする */
+    body, html { 
+        margin: 0; 
+        padding: 0; 
+        width: 100%; 
+        height: 100%; 
+        overflow: hidden; /* 外側のスクロールバーを消す */
+        background-color: #0f0518; /* 背景色を一応合わせておく */
+    }
+    /* iframeを画面いっぱいに広げる */
+    iframe { 
+        width: 100%; 
+        height: 100%; 
+        border: none; 
+        display: block; 
+    }
+</style>
+</head>
+<body style="margin:0">
+    <iframe id="morgana-frame"
+      src=""
       style="width:100vw; height:100vh; border:none;"
     ></iframe>
-  </body>
+
+    <script>
+      (function() {
+        // あなたのGASウェブアプリのURL
+        var GAS_URL = "https://script.google.com/macros/s/AKfycbyqGgq98343gYH8qcG8rrkCBYkxPgPZozocAUEK7fxyN4tmHXWRwd0aeGPVtXJ9_xeg/exec";
+
+        // 1. ブラウザのURLからパラメータ(?id=xxx)を取得
+        var params = new URLSearchParams(window.location.search);
+        var castId = params.get('id');
+
+        // 2. iframe要素を取得
+        var iframe = document.getElementById("morgana-frame");
+
+        // 3. IDがあればGASのURLにくっつけてセット、なければそのままセット
+        if (castId) {
+          iframe.src = GAS_URL + "?id=" + castId;
+        } else {
+          iframe.src = GAS_URL;
+        }
+      })();
+    </script>
+</body>
 </html>
